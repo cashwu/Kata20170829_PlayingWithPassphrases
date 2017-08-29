@@ -25,6 +25,18 @@ namespace Kata20170829_PlayingWithPassphrases
             PlayPassShouldBe("!4897 oSpC", "born 2015!", 1);
         }
 
+        [TestMethod]
+        public void input_I_LOVE_YOU()
+        {
+            PlayPassShouldBe("!!!vPz fWpM J", "I LOVE YOU!!!", 1);
+        }
+
+        [TestMethod]
+        public void input_MY_GRANMA_CAME_FROM_NY_ON_THE_23RD_OF_APRIL_2015()
+        {
+            PlayPassShouldBe("4897 NkTrC Hq fT67 GjV Pq aP OqTh gOcE CoPcTi aO", "MY GRANMA CAME FROM NY ON THE 23RD OF APRIL 2015", 2);
+        }
+
         private static void PlayPassShouldBe(string expected, string source, int timer)
         {
             var playPass = new PlayPass();
@@ -35,12 +47,29 @@ namespace Kata20170829_PlayingWithPassphrases
 
     public class PlayPass
     {
-        public string playPass(string s, int n)
+        public string playPass(string str, int shiftNum)
         {
-            var result = s.ToLower()
-                .Select(c => char.IsNumber(c) ? char.Parse((9 - (int)char.GetNumericValue(c)).ToString()) : (char.IsLetter(c) ? (char)(c + 1) : c))
-                .Select((c, i) => i % 2 == 0 ? char.ToUpper(c) : c);
-            return string.Concat(result.Reverse());
+            var result = str.ToLower().Select((letter, idx) => PassphrasesChar(letter, shiftNum, idx)).Reverse();
+            return string.Concat(result);
+        }
+
+        private static char PassphrasesChar(char letter, int shiftNum, int idx)
+        {
+            var newChar = char.IsNumber(letter) 
+                ? DigitComplementWithNine(letter) 
+                : TransformedLetterByShiftNumber(letter, shiftNum);
+
+            return idx % 2 == 0 ? char.ToUpper(newChar) : newChar;
+        }
+
+        private static char TransformedLetterByShiftNumber(char letter, int shiftNum)
+        {
+            return char.IsLetter(letter) ? (char)(letter + shiftNum > 'z' ? 'a' : letter + shiftNum) : letter;
+        }
+
+        private static char DigitComplementWithNine(char letter)
+        {
+            return char.Parse((9 - (int)char.GetNumericValue(letter)).ToString());
         }
     }
 }
