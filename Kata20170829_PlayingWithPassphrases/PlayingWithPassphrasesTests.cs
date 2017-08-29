@@ -64,7 +64,7 @@ namespace Kata20170829_PlayingWithPassphrases
 
         private static char TransformedLetterByShiftNumber(char letter, int shiftNum)
         {
-            return char.IsLetter(letter) ? (char)(letter + shiftNum > 'z' ? 'a' : letter + shiftNum) : letter;
+            return char.IsLetter(letter) ? (char)(letter + shiftNum > 122 ? letter + shiftNum - 26 : letter + shiftNum) : letter;
         }
 
         private static char DigitComplementWithNine(char letter)
