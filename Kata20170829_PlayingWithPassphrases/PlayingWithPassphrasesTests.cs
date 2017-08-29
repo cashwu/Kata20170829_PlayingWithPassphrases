@@ -14,7 +14,7 @@ namespace Kata20170829_PlayingWithPassphrases
         }
 
         [TestMethod]
-        public void input_cash_should_return_CpSo()
+        public void input_cash_should_return_iTbD()
         {
             PlayPassShouldBe("iTbD", "cash", 1);
         }
