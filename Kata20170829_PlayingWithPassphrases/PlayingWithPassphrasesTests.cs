@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Kata20170829_PlayingWithPassphrases
 {
     [TestClass]
-    public class UnitTest1
+    public class PlayingWithPassphrasesTests
     {
         [TestMethod]
         public void TestMethod1()
