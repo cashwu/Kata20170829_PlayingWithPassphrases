@@ -7,8 +7,24 @@ namespace Kata20170829_PlayingWithPassphrases
     public class PlayingWithPassphrasesTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void input_born_should_return_CpSo()
         {
+            PlayPassShouldBe("CpSo", "born", 1);
+        }
+
+        private static void PlayPassShouldBe(string expected, string source, int timer)
+        {
+            var playPass = new PlayPass();
+            var actual = playPass.playPass(source, timer);
+            Assert.AreEqual(expected, actual);
+        }
+    }
+
+    public class PlayPass
+    {
+        public string playPass(string s, int n)
+        {
+            return "CpSo";
         }
     }
 }
